@@ -14,10 +14,10 @@ const { AUTH0_DOMAIN, AUTH0_CLIENT_ID } = appConfig;
 root.render(
   <React.StrictMode>
     <Auth0Provider
-      domain={AUTH0_DOMAIN as string}
-      clientId={AUTH0_CLIENT_ID as string}
+      domain={`${AUTH0_DOMAIN as string}`}
+      clientId={`${AUTH0_CLIENT_ID as string}`}
       authorizationParams={{
-        redirect_uri: "/profile",
+        redirect_uri: "https://scrapay-client.vercel.app/profile",
       }}
     >
       <App />

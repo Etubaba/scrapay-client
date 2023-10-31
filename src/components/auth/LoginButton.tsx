@@ -9,6 +9,7 @@ const LoginButton = () => {
       color="#003D29"
       colorScheme="#003D29"
       variant="outline"
+      className="border px-4 py-1.5 rounded-md text-xs border-primary"
     >
       Login
     </Button>
