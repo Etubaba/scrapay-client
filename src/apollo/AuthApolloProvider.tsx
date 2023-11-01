@@ -19,7 +19,7 @@ const AuthorizedApolloProvider = ({
   const { getAccessTokenSilently } = useAuth0();
 
   const httpLink = createHttpLink({
-    uri: (BASE_URL as string) + "graphql",
+    uri: BASE_URL as string,
   });
 
   const authLink = setContext(async () => {
