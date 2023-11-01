@@ -9,8 +9,6 @@ import Profile from "./pages/profile";
 import Home from "./pages/Home";
 import CreateBook from "./pages/dasboard/CreateBook";
 import BooksList from "./pages/dasboard/BooksList";
-import { ApolloProvider } from "@apollo/client/react";
-import client from "./apollo/client";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,9 +33,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div>
-      <ApolloProvider client={client}>
-        <RouterProvider router={router} />
-      </ApolloProvider>
+      <RouterProvider router={router} />
     </div>
   );
 }
