@@ -13,21 +13,11 @@ const Header = () => {
         <h2 className="text-title logo text-primary  font-semibold">ℕ𝕚𝕟𝕛𝕒</h2>
       </Link>
 
-      <nav className="flex space-x-12">
-        <Link to="/">
-          <p className="md:text-sm text-xs">Home</p>
-        </Link>
-
-        <Link to="/profile">
-          <p className="md:text-sm text-xs">profile</p>
-        </Link>
-      </nav>
-
       {isAuthenticated && (
         <div className="md:flex space-x-3 items-center hidden">
           <p className="text-sm text-text ">Hi,{user?.nickname}</p>
           <div>
-            <Avatar size="xs" name={user?.nickname} src={user?.picture} />
+            <img className="w-7 h-7 rounded-full" src={user?.picture} />
           </div>
         </div>
       )}
