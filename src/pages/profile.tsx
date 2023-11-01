@@ -1,23 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
 import Backdrop from "../components/common/Backdrop";
-import { Link, redirect } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import SideNav from "../components/dashboard/SideBarNav";
 
 const Profile = () => {
-  //const [token, setToken] = useState<string | null>(null);
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-    useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   //if (!isAuthenticated) redirect("/");
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const accessToken = await getAccessTokenSilently();
-  //     setToken(accessToken);
-  //   })();
-  // }, [isAuthenticated]);
 
   if (isLoading) return <Backdrop />;
 

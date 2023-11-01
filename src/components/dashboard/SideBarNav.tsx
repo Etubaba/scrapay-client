@@ -1,10 +1,7 @@
 import { useState } from "react";
 import SideBarLink from "./SideBarLink";
 import { BiLogOut, BiBookAdd } from "react-icons/bi";
-import { BsNewspaper } from "react-icons/bs";
 import { TbBook2 } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
-
 import { SideBarType } from "../../types/componentsTypes";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -28,7 +25,6 @@ const SideNav = ({ setShow, show }: SideBarType) => {
     },
   ];
 
-  if (show !== undefined && show === false) return null;
   return (
     <div className="py-4 pl-4 bg-white transition  pr-4 relative md:static">
       <div className="h-screen  ">

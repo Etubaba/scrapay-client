@@ -10,15 +10,15 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const { AUTH0_DOMAIN, AUTH0_CLIENT_ID } = appConfig;
+const { AUTH0_DOMAIN, AUTH0_CLIENT_ID, BASE_URL } = appConfig;
 
 root.render(
   <React.StrictMode>
     <Auth0Provider
-      domain={`${process.env.REACT_APP_AUTH0_DOMAIN as string}`}
-      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
+      domain={`${AUTH0_DOMAIN as string}`}
+      clientId={AUTH0_CLIENT_ID as string}
       authorizationParams={{
-        redirect_uri: (process.env.REACT_APP_BASE_URL as string) + "profile",
+        redirect_uri: (BASE_URL as string) + "profile",
       }}
     >
       <App />
