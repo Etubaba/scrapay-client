@@ -12,9 +12,6 @@ const root = ReactDOM.createRoot(
 
 const { AUTH0_DOMAIN, AUTH0_CLIENT_ID } = appConfig;
 
-// console.log(AUTH0_CLIENT_ID);
-// console.log(AUTH0_DOMAIN);
-
 root.render(
   <React.StrictMode>
     <Auth0Provider
