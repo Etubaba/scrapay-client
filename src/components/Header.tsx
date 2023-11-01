@@ -13,16 +13,18 @@ const Header = () => {
         <h2 className="text-title logo text-primary  font-semibold">ℕ𝕚𝕟𝕛𝕒</h2>
       </Link>
 
-      {isAuthenticated && (
-        <div className="md:flex space-x-3 items-center hidden">
-          <p className="text-sm text-text ">Hi,{user?.nickname}</p>
-          <div>
-            <img className="w-7 h-7 rounded-full" src={user?.picture} />
+      <div className="flex md:space-x-8">
+        {isAuthenticated && (
+          <div className="md:flex space-x-3 items-center hidden">
+            <p className="text-sm text-text ">Hi, {user?.nickname}</p>
+            <div>
+              <img className="w-7 h-7 rounded-full" src={user?.picture} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</div>
+        <div>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</div>
+      </div>
     </div>
   );
 };
