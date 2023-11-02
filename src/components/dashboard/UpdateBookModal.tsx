@@ -73,15 +73,15 @@ const UpdateBookModal = ({
             <FormLabel>Book name</FormLabel>
             <Input
               onChange={(e) => setBookName(e.target.value)}
-              value={bookName}
+              defaultValue={bookName}
             />
           </FormControl>
 
           <FormControl mt={4}>
             <FormLabel>Description</FormLabel>
             <Textarea
+              defaultValue={description}
               onChange={(e) => setDescription(e.target.value)}
-              value={description}
             />
           </FormControl>
         </ModalBody>
