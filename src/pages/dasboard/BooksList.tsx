@@ -6,7 +6,7 @@ import { Button } from "@chakra-ui/react";
 import BookTable from "../../components/dashboard/BookTable";
 
 const BooksList = () => {
-  const { data, loading, error } = useQuery(GET_All_BOOKS);
+  const { data, loading, error, refetch } = useQuery(GET_All_BOOKS);
 
   console.log("fetched data ", data);
   console.log("fetched erro ", error);
@@ -24,13 +24,13 @@ const BooksList = () => {
             color="#003D29"
             colorScheme="#003D29"
             variant="outline"
-            className="border px-4 py-1 rounded-md text-xs border-primary"
+            size={"sm"}
           >
             Create Book
           </Button>
         </Link>
       </div>
-      <BookTable books={books} />
+      <BookTable refetch={refetch} books={books} />
     </div>
   );
 };

@@ -17,31 +17,41 @@ import {
   ModalOverlay,
   useDisclosure,
   ModalCloseButton,
+  useToast,
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 import { DELETE_BOOK_MUTATION } from "../../graphql/mutations";
 
-const BookTable = ({ books }: { books: BookType[] }) => {
+const BookTable = ({
+  books,
+  refetch,
+}: {
+  books: BookType[];
+  refetch: () => void;
+}) => {
   const [bookId, setBookId] = useState<null | number>(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const [deleteBook, { data, loading, error }] =
     useMutation(DELETE_BOOK_MUTATION);
 
-  //   const { mutate, isLoading } = useMutation(deletePost, {
-  //     onSuccess: () => {
-  //       toast.success("Post deleted successfully.", {
-  //         position: "top-right",
-  //       });
-  //       setDeleteModal(false);
-  //       refetch();
-  //     },
-  //     onError: () => {
-  //       toast.success("An error occur, try again.", {
-  //         position: "top-right",
-  //       });
-  //     },
-  //   });
+  const toast = useToast();
+
+  const onDelete = async () => {
+    try {
+      const { data } = await deleteBook({ variables: { input: bookId } });
+      refetch();
+
+      console.log(data);
+      toast({
+        title: `${data.removeBook.name} Deleted.`,
+        description: `${data.removeBook.name} has been deleted successfully.`,
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+      });
+    } catch (err) {}
+  };
 
   return (
     <div>
@@ -132,13 +142,11 @@ const BookTable = ({ books }: { books: BookType[] }) => {
 
             <div className="max-w-[12rem]">
               <Button
-                onClick={() =>
-                  deleteBook({ variables: { input: bookId as number } })
-                }
+                onClick={onDelete}
                 size={"sm"}
                 color="red"
                 colorScheme="red"
-                className="border px-4 py-1 rounded-md text-xs border-primary"
+                variant="outline"
               >
                 Delete
               </Button>
