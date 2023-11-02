@@ -41,8 +41,7 @@ const BookTable = ({
     try {
       const { data } = await deleteBook({ variables: { input: bookId } });
       refetch();
-
-      console.log(data);
+      onClose();
       toast({
         title: `${data.removeBook.name} Deleted.`,
         description: `${data.removeBook.name} has been deleted successfully.`,
@@ -50,7 +49,14 @@ const BookTable = ({
         duration: 6000,
         isClosable: true,
       });
-    } catch (err) {}
+    } catch (err) {
+      toast({
+        title: `Something went wrong.`,
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
