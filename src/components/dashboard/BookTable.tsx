@@ -78,7 +78,7 @@ const BookTable = ({ books }: { books: BookType[] }) => {
 
                   <td align="left">
                     <span className="flex ml-3 space-x-3 justify-start">
-                      <Link to={{ pathname: `/profile/create-book?${item}` }}>
+                      <Link to={{ pathname: `/profile/create-book` }}>
                         <button className="bg-blue-700 border flex space-x-2 hover:bg-blue-700/40   rounded-md p-1">
                           <CiEdit className="text-white" />
                         </button>
