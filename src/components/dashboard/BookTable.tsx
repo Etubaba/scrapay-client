@@ -10,13 +10,21 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 import { BookType } from "../../types/componentsTypes";
 import { Link } from "react-router-dom";
-import { Button, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  useDisclosure,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 import { DELETE_BOOK_MUTATION } from "../../graphql/mutations";
 
 const BookTable = ({ books }: { books: BookType[] }) => {
-  const [deleteModal, setDeleteModal] = useState(false);
   const [bookId, setBookId] = useState<null | number>(null);
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
   const [deleteBook, { data, loading, error }] =
     useMutation(DELETE_BOOK_MUTATION);
 
@@ -37,10 +45,6 @@ const BookTable = ({ books }: { books: BookType[] }) => {
 
   return (
     <div>
-      <div className="flex mb-6 flex-col md:flex-row justify-between md:items-center">
-        <p className="text-textcolor md:mb-0 mb-3  font-semibold">Books</p>
-      </div>
-
       {/* table starts here */}
 
       {books.length === 0 ? (
@@ -86,7 +90,7 @@ const BookTable = ({ books }: { books: BookType[] }) => {
                       <button
                         onClick={() => {
                           setBookId(item.id);
-                          //   setDeleteModal(true);
+                          onOpen();
                         }}
                         className="bg-red-700 border flex space-x-2 hover:bg-red-700/40   rounded-md p-1"
                       >
@@ -103,7 +107,7 @@ const BookTable = ({ books }: { books: BookType[] }) => {
 
       {/* delete modal start here  */}
 
-      <Modal isOpen={deleteModal} onClose={() => setDeleteModal(false)}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <div className="w-[16rem] md:w-[24rem]  h-auto">
@@ -118,7 +122,7 @@ const BookTable = ({ books }: { books: BookType[] }) => {
             </div>
             <div className="flex justify-between mt-4">
               <Button
-                onClick={() => setDeleteModal(false)}
+                onClick={onClose}
                 color="#003D29"
                 colorScheme="#003D29"
                 variant="outline"
