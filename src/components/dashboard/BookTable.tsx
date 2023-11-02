@@ -109,40 +109,39 @@ const BookTable = ({ books }: { books: BookType[] }) => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <div className="w-[16rem] md:w-[24rem]  h-auto">
-            <div className="flex flex-col space-y-3 justify-center items-center">
-              <MdErrorOutline className="text-red-600 text-5xl" />
-              <p className="text-lg font-semibold text-title  mt-2">
-                Delete BooK
-              </p>
-              <p className="text-sm  text-textcolor  mt-2">
-                You are about to delete this book.
-              </p>
-            </div>
-            <div className="flex justify-between mt-4">
+        <ModalContent className="w-[16rem] md:w-[24rem]  h-auto">
+          <div className="flex flex-col space-y-3 justify-center items-center">
+            <MdErrorOutline className="text-red-600 text-5xl" />
+            <p className="text-lg font-semibold text-title  mt-2">
+              Delete BooK
+            </p>
+            <p className="text-sm  text-textcolor  mt-2">
+              You are about to delete this book.
+            </p>
+          </div>
+          <div className="flex justify-between mt-4">
+            <Button
+              onClick={onClose}
+              color="red"
+              colorScheme="red"
+              variant="outline"
+              size={"sm"}
+            >
+              Cancel
+            </Button>
+
+            <div className="max-w-[12rem]">
               <Button
-                onClick={onClose}
+                onClick={() =>
+                  deleteBook({ variables: { input: bookId as number } })
+                }
+                size={"sm"}
                 color="#003D29"
                 colorScheme="#003D29"
-                variant="outline"
                 className="border px-4 py-1 rounded-md text-xs border-primary"
               >
-                Cancel
+                Delete
               </Button>
-
-              <div className="max-w-[12rem]">
-                <Button
-                  onClick={() =>
-                    deleteBook({ variables: { input: bookId as number } })
-                  }
-                  color="#003D29"
-                  colorScheme="#003D29"
-                  className="border px-4 py-1 rounded-md text-xs border-primary"
-                >
-                  Delete
-                </Button>
-              </div>
             </div>
           </div>
         </ModalContent>

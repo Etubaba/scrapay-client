@@ -11,7 +11,8 @@ const LogoutButton = () => {
       color="#003D29"
       variant="outline"
       colorScheme="#003D29"
-      className="border px-4 py-1 rounded-md text-xs border-primary"
+      size={"sm"}
+      //  className="border px-4 py-1 rounded-md text-xs border-primary"
     >
       Logout
     </Button>
