@@ -21,8 +21,8 @@ const UpdateBookModal = ({
   book,
   refetch,
 }: UpdateBookType) => {
-  const [bookName, setBookName] = useState(book.name);
-  const [description, setDescription] = useState(book.description);
+  const [bookName, setBookName] = useState(book?.name);
+  const [description, setDescription] = useState(book?.description);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

@@ -1,27 +1,21 @@
 import EmptyState from "../common/EmptyState";
-
-// import { deletePost } from "@/constant/requestManager";
-
-import React, { useState } from "react";
-import { BsNewspaper } from "react-icons/bs";
+import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdErrorOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
 import { BookType } from "../../types/componentsTypes";
-import { Link } from "react-router-dom";
 import {
   Button,
   Modal,
   ModalContent,
   ModalOverlay,
   useDisclosure,
-  ModalCloseButton,
   useToast,
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 import { DELETE_BOOK_MUTATION } from "../../graphql/mutations";
 import UpdateBookModal from "./UpdateBookModal";
+import { TbBook2 } from "react-icons/tb";
 
 const BookTable = ({
   books,
@@ -70,11 +64,7 @@ const BookTable = ({
       {/* table starts here */}
 
       {books.length === 0 ? (
-        <EmptyState
-          name={"blog"}
-          title={"No Blog Details"}
-          Icon={BsNewspaper}
-        />
+        <EmptyState name={"book"} title={"No Book Details"} Icon={TbBook2} />
       ) : (
         <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left text-gray-500 ">
