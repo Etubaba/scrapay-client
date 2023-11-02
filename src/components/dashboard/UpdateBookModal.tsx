@@ -77,7 +77,7 @@ const UpdateBookModal = ({
             <FormLabel>Book name</FormLabel>
             <Input
               onChange={(e) => setBookName(e.target.value)}
-              defaultValue={book.name}
+              defaultValue={book?.name}
             />
           </FormControl>
 
