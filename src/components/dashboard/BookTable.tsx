@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 import { DELETE_BOOK_MUTATION } from "../../graphql/mutations";
+import UpdateBookModal from "./UpdateBookModal";
 
 const BookTable = ({
   books,
@@ -30,7 +31,13 @@ const BookTable = ({
   refetch: () => void;
 }) => {
   const [bookId, setBookId] = useState<null | number>(null);
+  const [selected, setSelected] = useState<null | BookType>(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    isOpen: update,
+    onClose: closeUpdate,
+    onOpen: onOpenUpdate,
+  } = useDisclosure();
 
   const [deleteBook, { data, loading, error }] =
     useMutation(DELETE_BOOK_MUTATION);
@@ -98,11 +105,15 @@ const BookTable = ({
 
                   <td align="left">
                     <span className="flex ml-3 space-x-3 justify-start">
-                      <Link to={{ pathname: `/profile/create-book` }}>
-                        <button className="bg-blue-700 border flex space-x-2 hover:bg-blue-700/40   rounded-md p-1">
-                          <CiEdit className="text-white" />
-                        </button>
-                      </Link>
+                      <button
+                        onClick={() => {
+                          setSelected(item);
+                        }}
+                        className="bg-blue-700 border flex space-x-2 hover:bg-blue-700/40   rounded-md p-1"
+                      >
+                        <CiEdit className="text-white" />
+                      </button>
+
                       <button
                         onClick={() => {
                           setBookId(item.id);
@@ -161,9 +172,13 @@ const BookTable = ({
         </ModalContent>
       </Modal>
 
-      {/* <Modal onClose={() => setDeleteModal(false)} open={deleteModal}>
-      
-      </Modal> */}
+      {/* update book modal   */}
+      <UpdateBookModal
+        book={selected as BookType}
+        refetch={refetch}
+        onClose={closeUpdate}
+        isOpen={update}
+      />
     </div>
   );
 };

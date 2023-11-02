@@ -25,3 +25,10 @@ export type EmptyValueType = {
   Icon: IconType;
   style?: String;
 };
+
+export type UpdateBookType = {
+  book: BookType;
+  refetch: () => void;
+  isOpen: boolean;
+  onClose: () => void;
+};

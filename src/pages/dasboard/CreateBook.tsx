@@ -13,12 +13,14 @@ import { CREATE_BOOK_MUTATION } from "../../graphql/mutations";
 const CreateBook = () => {
   const [bookName, setBookName] = useState("");
   const [description, setDescription] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const [mutate, {}] = useMutation(CREATE_BOOK_MUTATION);
   const toast = useToast();
 
   const onCreate = async () => {
-    validateForm();
+    const isInValid = validateForm();
+    if (isInValid) return;
     try {
       const variables = {
         input: {
@@ -27,25 +29,27 @@ const CreateBook = () => {
         },
       };
       const { data } = await mutate({ variables });
+
+      // toast success notification on success
       toast({
         title: `${data.createBook.name} Created.`,
-        description: `You create a book successfully.`,
+        description: `You created a book successfully.`,
         status: "success",
         duration: 6000,
         isClosable: true,
       });
-
+      // reset form
       setDescription("");
       setBookName("");
     } catch (err) {}
   };
 
-  let isError = false;
-
   function validateForm() {
     if (description === "" || bookName === "") {
-      isError = true;
+      setIsError(true);
+      return true;
     }
+    return false;
   }
 
   return (
