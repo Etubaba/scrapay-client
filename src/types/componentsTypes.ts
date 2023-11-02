@@ -32,3 +32,10 @@ export type UpdateBookType = {
   isOpen: boolean;
   onClose: () => void;
 };
+
+export type detailsProps = {
+  title: string;
+  content: string;
+  Icon: IconType;
+  color?: string;
+};

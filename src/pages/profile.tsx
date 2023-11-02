@@ -1,13 +1,17 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Backdrop from "../components/common/Backdrop";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import SideNav from "../components/dashboard/SideBarNav";
 
 const Profile = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
-  //if (!isAuthenticated) redirect("/");
+  const navigate = useNavigate();
+
+  if (!isAuthenticated) {
+    navigate("/");
+  }
 
   if (isLoading) return <Backdrop />;
 
