@@ -11,7 +11,8 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const { AUTH0_DOMAIN, AUTH0_CLIENT_ID, CALLBACK_URL } = appConfig;
+const { AUTH0_DOMAIN, AUTH0_CLIENT_ID, CALLBACK_URL, AUTH0_AUDIENCE } =
+  appConfig;
 
 root.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ root.render(
       clientId={AUTH0_CLIENT_ID as string}
       authorizationParams={{
         redirect_uri: CALLBACK_URL as string,
+        audience: AUTH0_AUDIENCE,
       }}
     >
       <AuthorizedApolloProvider>
