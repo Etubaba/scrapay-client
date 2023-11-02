@@ -41,7 +41,15 @@ const CreateBook = () => {
       // reset form
       setDescription("");
       setBookName("");
-    } catch (err) {}
+    } catch (err) {
+      toast({
+        title: `Something went wrong`,
+
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      });
+    }
   };
 
   function validateForm() {
