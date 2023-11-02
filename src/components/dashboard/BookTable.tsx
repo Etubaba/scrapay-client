@@ -39,8 +39,7 @@ const BookTable = ({
     onOpen: onOpenUpdate,
   } = useDisclosure();
 
-  const [deleteBook, { data, loading, error }] =
-    useMutation(DELETE_BOOK_MUTATION);
+  const [deleteBook, {}] = useMutation(DELETE_BOOK_MUTATION);
 
   const toast = useToast();
 
@@ -107,6 +106,7 @@ const BookTable = ({
                     <span className="flex ml-3 space-x-3 justify-start">
                       <button
                         onClick={() => {
+                          onOpenUpdate();
                           setSelected(item);
                         }}
                         className="bg-blue-700 border flex space-x-2 hover:bg-blue-700/40   rounded-md p-1"
