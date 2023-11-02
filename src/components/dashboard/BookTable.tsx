@@ -109,7 +109,7 @@ const BookTable = ({ books }: { books: BookType[] }) => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent className="w-[16rem] md:w-[24rem]  h-auto">
+        <ModalContent className="w-[16rem] md:w-[18rem] p-4 h-auto">
           <div className="flex flex-col space-y-3 justify-center items-center">
             <MdErrorOutline className="text-red-600 text-5xl" />
             <p className="text-lg font-semibold text-title  mt-2">
@@ -121,9 +121,9 @@ const BookTable = ({ books }: { books: BookType[] }) => {
           </div>
           <div className="flex justify-between mt-4">
             <Button
+              color="#003D29"
+              colorScheme="#003D29"
               onClick={onClose}
-              color="red"
-              colorScheme="red"
               variant="outline"
               size={"sm"}
             >
@@ -136,8 +136,8 @@ const BookTable = ({ books }: { books: BookType[] }) => {
                   deleteBook({ variables: { input: bookId as number } })
                 }
                 size={"sm"}
-                color="#003D29"
-                colorScheme="#003D29"
+                color="red"
+                colorScheme="red"
                 className="border px-4 py-1 rounded-md text-xs border-primary"
               >
                 Delete
