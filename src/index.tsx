@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { appConfig } from "./constant";
+import { ChakraProvider } from "@chakra-ui/react";
 import AuthorizedApolloProvider from "./apollo/AuthApolloProvider";
 
 const root = ReactDOM.createRoot(
@@ -25,7 +26,9 @@ root.render(
       }}
     >
       <AuthorizedApolloProvider>
-        <App />
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
       </AuthorizedApolloProvider>
     </Auth0Provider>
   </React.StrictMode>
