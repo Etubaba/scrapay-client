@@ -8,9 +8,6 @@ import BookTable from "../../components/dashboard/BookTable";
 const BooksList = () => {
   const { data, loading, error, refetch } = useQuery(GET_All_BOOKS);
 
-  console.log("fetched data ", data);
-  console.log("fetched erro ", error);
-
   const books = error || data === undefined ? [] : data?.books;
 
   return (

@@ -24,8 +24,8 @@ const UpdateBookModal = ({
   book,
   refetch,
 }: UpdateBookType) => {
-  const [bookName, setBookName] = useState(book?.name);
-  const [description, setDescription] = useState(book?.description);
+  const [bookName, setBookName] = useState("");
+  const [description, setDescription] = useState("");
   const toast = useToast();
 
   const [mutate, {}] = useMutation(UPDATE_BOOK_MUTATION);
@@ -35,8 +35,12 @@ const UpdateBookModal = ({
       const variables = {
         input: {
           id: book?.id,
-          name: book?.name,
-          description: book?.description,
+          name:
+            bookName === "" || bookName === book?.name ? undefined : bookName,
+          description:
+            description === "" || description === book?.description
+              ? undefined
+              : description,
         },
       };
       await mutate({ variables });
@@ -73,14 +77,14 @@ const UpdateBookModal = ({
             <FormLabel>Book name</FormLabel>
             <Input
               onChange={(e) => setBookName(e.target.value)}
-              defaultValue={bookName}
+              defaultValue={book.name}
             />
           </FormControl>
 
           <FormControl mt={4}>
             <FormLabel>Description</FormLabel>
             <Textarea
-              defaultValue={description}
+              defaultValue={book?.description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </FormControl>
