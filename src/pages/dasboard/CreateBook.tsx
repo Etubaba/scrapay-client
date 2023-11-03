@@ -52,6 +52,7 @@ const CreateBook = () => {
     }
   };
 
+  //validate form input
   function validateForm() {
     if (description === "" || bookName === "") {
       setIsError(true);
